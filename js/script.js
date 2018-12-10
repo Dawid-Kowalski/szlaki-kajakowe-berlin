@@ -1,17 +1,35 @@
 function initMap() {
-  	let startPoint1 = {lng: 13.6249754, lat: 52.2966784};
-  	let startPoint2 = {lng: 13.5732407, lat: 52.4314199};
 
-  	let startPoint3 = {lng: 13.1854872, lat: 53.0763313};
-  	let endPoint3 = {lng: 13.3214859, lat: 53.0062133};
+	let centerPoint = {lng: 13.220063, lat: 52.741571};
+	let map = new google.maps.Map(document.getElementById('map'), {zoom: 9, center: centerPoint});
 
+	let markerCoordinats =	[
+								{lng: 13.6249754, lat: 52.2966784},
+								{lng: 13.5732407, lat: 52.4314199},
+								{lng: 13.1854872, lat: 53.0763313},
+								{lng: 13.3214859, lat: 53.0062133}
+							];
 
-  	let map = new google.maps.Map(document.getElementById('map'), {zoom: 12, center: startPoint1});
+  	let markers = [];
 
-  	let marker1 = new google.maps.Marker({position: startPoint1, map: map, icon: 'images/canoe.png'});
-  	let marker2 = new google.maps.Marker({position: startPoint2, map: map, icon: 'images/canoe.png'});
-  	let marker3 = new google.maps.Marker({position: startPoint3, map: map, icon: 'images/canoe.png'});
-  	let marker4 = new google.maps.Marker({position: endPoint3, map: map, icon: 'images/canoe.png'});
+  	for(let i=0; i<4; i++) {
+  		markers[i] = new google.maps.Marker({position: markerCoordinats[i], map: map, icon: 'images/canoe.png', title: 'szczegóły'});
+  	}
+
+  	for(let i=0; i<4;i++) {
+
+  		let markerInfo = 	'<div>' + 
+  							'<p>'+i+'</p>' +
+  							'</div>'
+
+  		let markerWindow = new google.maps.InfoWindow({
+          	content: markerInfo
+    	});
+
+	  		markers[i].addListener('click', function() {
+	        markerWindow.open(map, markers[i]);
+	    });
+	}
 
 	let routs = [
 						[
