@@ -8,11 +8,10 @@ function initMap() {
 
   	let map = new google.maps.Map(document.getElementById('map'), {zoom: 12, center: startPoint1});
 
-  	let marker1 = new google.maps.Marker({position: startPoint1, map: map});
-  	let marker2 = new google.maps.Marker({position: startPoint2, map: map});
-  	let marker3 = new google.maps.Marker({position: startPoint3, map: map});
-  	let marker4 = new google.maps.Marker({position: endPoint3, map: map});
-
+  	let marker1 = new google.maps.Marker({position: startPoint1, map: map, icon: 'images/canoe.png'});
+  	let marker2 = new google.maps.Marker({position: startPoint2, map: map, icon: 'images/canoe.png'});
+  	let marker3 = new google.maps.Marker({position: startPoint3, map: map, icon: 'images/canoe.png'});
+  	let marker4 = new google.maps.Marker({position: endPoint3, map: map, icon: 'images/canoe.png'});
 
 	let routs = [
 						[
