@@ -1,12 +1,24 @@
+let map;
+
 function initMap() {
 
-	let map = new google.maps.Map(document.getElementById('map'), {zoom: 9, center: centerPoint});
+	map = new google.maps.Map(document.getElementById('map'), {zoom: 9, center: centerPoint});
+	addMarkers(map, markers);
+	addMarkersModal(map, markers);
+	addRoutes (map, routs);
 
+}
+
+function addMarkers(map, markers) {
+  	
   	for(let i=0; i<4; i++) {
   		markers[i] = new google.maps.Marker({position: markerCoordinats[i], map: map, icon: 'images/canoe.png', title: 'szczegóły'});
   	}
+}
 
-  	for(let i=0; i<4;i++) {
+function addMarkersModal(map, markers) {
+
+	for(let i=0; i<4;i++) {
 
   		let markerInfo = 	'<div>' + 
   							'<p>Początek: '+ routsDetails[i].start + '</p>' +
@@ -22,7 +34,9 @@ function initMap() {
 	        markerWindow.open(map, markers[i]);
 	    });
 	}
+}
 
+function addRoutes (map, routs) {
 	for(let i = 0; i<routs.length;i++){
 
 	    let rout = new google.maps.Polyline({
